@@ -21,19 +21,19 @@
         </jdbcConnection>
 
         <!--实体-->
-        <javaModelGenerator targetPackage="cn.zbq.springcloud.usercenter.domain.entity.{$moduleName}"
+        <javaModelGenerator targetPackage="cn.zbq.springcloud.usercenter.domain.entity.${moduleName}"
                             targetProject="src/main/java"/>
 
         <!--mapper-->
-        <sqlMapGenerator targetPackage="cn.zbq.springcloud.usercenter.dao.{$moduleName}"
+        <sqlMapGenerator targetPackage="cn.zbq.springcloud.usercenter.dao.${moduleName}"
                          targetProject="src/main/resources"/>
 
         <!--mapper接口-->
-        <javaClientGenerator targetPackage="cn.zbq.springcloud.usercenter.dao.{$moduleName}"
+        <javaClientGenerator targetPackage="cn.zbq.springcloud.usercenter.dao.${moduleName}"
                              targetProject="src/main/java"
                              type="XMLMAPPER"/>
         <!--为哪张表生成代码-->
-        <table tableName="{$tableName}">
+        <table tableName="${tableName}">
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
     </context>
