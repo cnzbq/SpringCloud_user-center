@@ -66,6 +66,14 @@
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
         </dependency>
+
+        <!-- spring-cloud-starter-{spring cloud 子项目名称}-[{模块名称}] -->
+        <!-- feign spring-cloud-starter-openfeign -->
+        <!-- sentinel spring-cloud-starter-sentinel -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
