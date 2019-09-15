@@ -15,7 +15,11 @@ spring:
         # 指定namespace 需要先在控制台进行创建(配置的是命名空间ID)
 #        namespace: 344986bd-23f3-4a76-a2e5-4c11db58fa15
         # 指定集群名称 假设在深圳机房
-#        cluster-name: SZ
+  #        cluster-name: SZ
+#        metadata:
+#          instance: test
+#          hello: haha
+#          version: v1
   application:
     # 服务名称尽量用中划线“-” ，不要使用下划线“_”，更不要用特殊字符
     name: user-center
