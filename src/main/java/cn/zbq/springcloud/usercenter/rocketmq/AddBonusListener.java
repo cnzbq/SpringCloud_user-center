@@ -6,6 +6,7 @@ import cn.zbq.springcloud.usercenter.domain.dto.message.UserAddBonusMagDTO;
 import cn.zbq.springcloud.usercenter.domain.entity.user.BonusEventLog;
 import cn.zbq.springcloud.usercenter.domain.entity.user.User;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.Date;
  * @author Zbq
  * @since 2019/11/23 11:16
  */
+@Slf4j
 @Service
 @RocketMQMessageListener(consumerGroup = "consumer-group", topic = "add-bonus")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -47,6 +49,8 @@ public class AddBonusListener implements RocketMQListener<UserAddBonusMagDTO> {
                         .createTime(new Date())
                         .event("CONTRIBUTE")
                         .description("投稿加积分...")
-                        .build());
+                        .build()
+        );
+        log.info("积分添加完毕...");
     }
 }
