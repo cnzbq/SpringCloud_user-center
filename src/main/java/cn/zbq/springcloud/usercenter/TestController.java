@@ -20,7 +20,7 @@ public class TestController {
     private UserMapper userMapper;
 
     @GetMapping("/test")
-    public User testInsert(){
+    public User testInsert() {
         User user = new User();
         user.setAvatarUrl("xxx");
         user.setBonus(100);
@@ -29,6 +29,17 @@ public class TestController {
         // insert()  insert into (所有字段) values ()
         // insertSelective  insert into (不为null的字段) values ()
         this.userMapper.insertSelective(user);
+        return user;
+    }
+
+
+    /**
+     * q?id=xx&wxId=xx&wxNickname=xx...
+     * @param user
+     * @return
+     */
+    @GetMapping("/q")
+    public User query(User user) {
         return user;
     }
 }
