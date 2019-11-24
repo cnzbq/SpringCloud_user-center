@@ -13,7 +13,7 @@ spring:
         # 指定nacos server 地址  注意：地址前面不要加协议，直接指定IP/域名就可以了
         server-addr: 117.50.105.135:15098
         # 指定namespace 需要先在控制台进行创建(配置的是命名空间ID)
-#        namespace: 344986bd-23f3-4a76-a2e5-4c11db58fa15
+        #        namespace: 344986bd-23f3-4a76-a2e5-4c11db58fa15
         # 指定集群名称 假设在深圳机房
         cluster-name: BJ
         metadata:
@@ -27,6 +27,10 @@ spring:
           destination: stream-test-topic
           # 如果是RocketMQ一定要设置，其它可留空
           group: binder-group
+        my-input:
+          destination: stream-my-topic
+          # 如果是RocketMQ一定要设置，其它可留空
+          group: my-group
   application:
     # 服务名称尽量用中划线“-” ，不要使用下划线“_”，更不要用特殊字符
     name: user-center
@@ -34,4 +38,6 @@ server:
   port: 8081
 rocketmq:
   name-server: 117.50.105.135:9876
-
+logging:
+  level:
+    com.alibaba.nacos: error
