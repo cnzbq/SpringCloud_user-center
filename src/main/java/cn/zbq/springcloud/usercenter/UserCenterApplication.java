@@ -1,6 +1,5 @@
 package cn.zbq.springcloud.usercenter;
 
-import cn.zbq.springcloud.usercenter.rocketmq.MySink;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -13,7 +12,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 // 扫描哪些包里面的接口
 @MapperScan("cn.zbq.springcloud")
 @SpringBootApplication
-@EnableBinding({Sink.class, MySink.class})
+@EnableBinding({Sink.class})
 public class UserCenterApplication {
 
     public static void main(String[] args) {
