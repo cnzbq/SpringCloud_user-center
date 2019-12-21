@@ -2,6 +2,7 @@ package cn.zbq.springcloud.usercenter.controller.user;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import cn.zbq.springcloud.usercenter.auth.LoginCheck;
 import cn.zbq.springcloud.usercenter.domain.dto.user.JwtTokenRespDTO;
 import cn.zbq.springcloud.usercenter.domain.dto.user.LoginRespDTO;
 import cn.zbq.springcloud.usercenter.domain.dto.user.UserLoginDTO;
@@ -39,6 +40,7 @@ public class UserController {
      * @param id 用户id
      * @return user
      */
+    @LoginCheck
     @GetMapping("/{id}")
     public User findUserById(@PathVariable Integer id) {
         log.info("我被请求了");
@@ -55,7 +57,7 @@ public class UserController {
 
         // 判断用户是否已经注册，没有注册插入用户信息，已经注册颁发token
         User user = this.userService.login(userLoginDTO, openid);
-        HashMap<String, Object> userInfo = new HashMap<>();
+        HashMap<String, Object> userInfo = new HashMap<>(3);
         userInfo.put("id", user.getId());
         userInfo.put("wxNickname", user.getWxNickname());
         userInfo.put("role", user.getRoles());
@@ -81,5 +83,17 @@ public class UserController {
                                 .token(token)
                                 .build())
                 .build();
+    }
+
+    /**
+     * 模拟生成token
+     */
+    @GetMapping("gen-token")
+    public String genToken() {
+        HashMap<String, Object> userInfo = new HashMap<>(3);
+        userInfo.put("id", 1);
+        userInfo.put("wxNickname", "快乐每一天");
+        userInfo.put("role", "user");
+        return this.jwtOperator.generateToken(userInfo);
     }
 }
