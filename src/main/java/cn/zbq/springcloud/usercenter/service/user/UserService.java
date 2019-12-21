@@ -3,6 +3,7 @@ package cn.zbq.springcloud.usercenter.service.user;
 import cn.zbq.springcloud.usercenter.dao.user.BonusEventLogMapper;
 import cn.zbq.springcloud.usercenter.dao.user.UserMapper;
 import cn.zbq.springcloud.usercenter.domain.dto.message.UserAddBonusMsgDTO;
+import cn.zbq.springcloud.usercenter.domain.dto.user.UserLoginDTO;
 import cn.zbq.springcloud.usercenter.domain.entity.user.BonusEventLog;
 import cn.zbq.springcloud.usercenter.domain.entity.user.User;
 import lombok.RequiredArgsConstructor;
@@ -62,4 +63,28 @@ public class UserService {
         log.info("积分添加完毕...");
     }
 
+    public User login(UserLoginDTO userLoginDTO, String openId) {
+        User user = this.userMapper.selectOne(
+                User.builder()
+                        .wxId(openId)
+                        .build()
+        );
+
+        if (user == null) {
+            User userToSave = User.builder()
+                    .wxId(openId)
+                    .bonus(300)
+                    .wxNickname(userLoginDTO.getWxNickname())
+                    .avatarUrl(userLoginDTO.getAvatarUrl())
+                    .roles("user")
+                    .createTime(new Date())
+                    .updateTime(new Date())
+                    .build();
+            this.userMapper.insertSelective(
+                    userToSave
+            );
+            return userToSave;
+        }
+        return user;
+    }
 }
