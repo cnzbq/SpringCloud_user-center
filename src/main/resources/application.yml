@@ -29,6 +29,12 @@ spring:
   application:
     # 服务名称尽量用中划线“-” ，不要使用下划线“_”，更不要用特殊字符
     name: user-center
+  zipkin:
+    base-url: http://127.0.0.1:9411
+  sleuth:
+    sampler:
+      # 抽样率，默认0.1 （10%） [只有10%的数据会上报到zipkin，90%的数据会被丢弃]
+      probability: 1.0
 server:
   port: 8081
 logging:
