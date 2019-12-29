@@ -56,8 +56,8 @@ public class UserService {
                         .userId(userId)
                         .value(bonus)
                         .createTime(new Date())
-                        .event("CONTRIBUTE")
-                        .description("投稿加积分...")
+                        .event(userAddBonusMsgDTO.getEvent())
+                        .description(userAddBonusMsgDTO.getDescription())
                         .build()
         );
         log.info("积分添加完毕...");

@@ -29,4 +29,12 @@ public class UserAddBonusMsgDTO implements Serializable {
      * 加多少积分
      */
     private Integer bonus;
+    /**
+     * 发生的事件
+     */
+    private String event;
+    /**
+     * 描述
+     */
+    private String description;
 }
